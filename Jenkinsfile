@@ -4,9 +4,9 @@ GOLANG_VERSION = "1.11"
 
 pipeline {
     agent {
-        label "master"
+        //label "master"
         kubernetes {
-            //label 'sample_use_jenkins'
+            label 'sample_use_jenkins'
             defaultContainer 'jnlp'
             yaml """
 apiVersion: v1
