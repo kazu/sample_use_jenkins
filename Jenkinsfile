@@ -10,7 +10,9 @@ pipeline {
     stages {
         stage('test') {
             steps {
+                sh """
                 bash test.sh
+                """
             }
         }
     }
