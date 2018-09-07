@@ -4,11 +4,11 @@ GOLANG_VERSION = "1.11"
 
 pipeline {
     agent {
-        label "master"
+        //label "master"
         kubernetes {
-      label 'sample-app'
-      defaultContainer 'jnlp'
-      yaml """
+            label 'sample-app'
+            defaultContainer 'jnlp'
+            yaml """
 apiVersion: v1
 kind: Pod
 metadata:
@@ -19,7 +19,7 @@ spec:
   serviceAccountName: cd-jenkins
   containers:
   - name: golang
-    image: golang:1.10
+    image: golang:1.11
     command:
     - cat
     tty: true
@@ -34,15 +34,24 @@ spec:
     - cat
     tty: true
 """
-}
+        }
     }
 
     stages {
         stage('test') {
+                        // docker run --rm \
+                        // -v ${workspace}:/go/src/github.com/monsterstrike/mb_server \
+                        // -w /go/src/github.com/monsterstrike/mb_server \
+                        // golang:${GOLANG_VERSION} \
+                        // bash apps/entrypoint/test.sh
             steps {
-                sh """
-                bash test.sh
-                """
+                // ln -s `pwd` /go/src/sample-app
+                // cd /go/src/sample-app
+                container('golang'){
+                    sh """
+                    bash test.sh
+                    """
+                }
             }
         }
     }
