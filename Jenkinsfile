@@ -19,7 +19,7 @@ spec:
   serviceAccountName: default
   containers:
   - name: golang
-    image: golang:1.11
+    image: golang:${GOLANG_VERSION}
     command:
     - cat
     tty: true
