@@ -6,7 +6,7 @@ pipeline {
     agent {
         //label "master"
         kubernetes {
-            //label 'sample-app'
+            label 'sample_use_jenkins'
             defaultContainer 'jnlp'
             yaml """
 apiVersion: v1
@@ -16,7 +16,7 @@ labels:
   component: ci
 spec:
   # Use service account that can deploy to all namespaces
-  serviceAccountName: cd-jenkins
+  serviceAccountName: default
   containers:
   - name: golang
     image: golang:1.11
