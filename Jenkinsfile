@@ -6,7 +6,7 @@ pipeline {
     agent {
         //label "master"
         kubernetes {
-            label 'sample_use_jenkins'
+            label 'master'
             defaultContainer 'jnlp'
             yaml """
 apiVersion: v1
